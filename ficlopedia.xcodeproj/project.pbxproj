@@ -1,0 +1,608 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3391D9D2228E651900CEBC99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391D9D1228E651900CEBC99 /* AppDelegate.swift */; };
+		3391D9D4228E651900CEBC99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391D9D3228E651900CEBC99 /* ViewController.swift */; };
+		3391D9D7228E651900CEBC99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3391D9D5228E651900CEBC99 /* Main.storyboard */; };
+		3391D9DA228E651900CEBC99 /* ficlopedia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3391D9D8228E651900CEBC99 /* ficlopedia.xcdatamodeld */; };
+		3391D9DC228E651900CEBC99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3391D9DB228E651900CEBC99 /* Assets.xcassets */; };
+		3391D9DF228E651900CEBC99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3391D9DD228E651900CEBC99 /* LaunchScreen.storyboard */; };
+		3391D9EA228E651A00CEBC99 /* ficlopediaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391D9E9228E651A00CEBC99 /* ficlopediaTests.swift */; };
+		3391D9F5228E651A00CEBC99 /* ficlopediaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391D9F4228E651A00CEBC99 /* ficlopediaUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3391D9E6228E651A00CEBC99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3391D9C6228E651900CEBC99 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3391D9CD228E651900CEBC99;
+			remoteInfo = ficlopedia;
+		};
+		3391D9F1228E651A00CEBC99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3391D9C6228E651900CEBC99 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3391D9CD228E651900CEBC99;
+			remoteInfo = ficlopedia;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3391D9CE228E651900CEBC99 /* ficlopedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ficlopedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3391D9D1228E651900CEBC99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3391D9D3228E651900CEBC99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3391D9D6228E651900CEBC99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3391D9D9228E651900CEBC99 /* ficlopedia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ficlopedia.xcdatamodel; sourceTree = "<group>"; };
+		3391D9DB228E651900CEBC99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3391D9DE228E651900CEBC99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3391D9E0228E651A00CEBC99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3391D9E5228E651A00CEBC99 /* ficlopediaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ficlopediaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3391D9E9228E651A00CEBC99 /* ficlopediaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ficlopediaTests.swift; sourceTree = "<group>"; };
+		3391D9EB228E651A00CEBC99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3391D9F0228E651A00CEBC99 /* ficlopediaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ficlopediaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3391D9F4228E651A00CEBC99 /* ficlopediaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ficlopediaUITests.swift; sourceTree = "<group>"; };
+		3391D9F6228E651A00CEBC99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3391D9CB228E651900CEBC99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3391D9E2228E651A00CEBC99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3391D9ED228E651A00CEBC99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3391D9C5228E651900CEBC99 = {
+			isa = PBXGroup;
+			children = (
+				3391D9D0228E651900CEBC99 /* ficlopedia */,
+				3391D9E8228E651A00CEBC99 /* ficlopediaTests */,
+				3391D9F3228E651A00CEBC99 /* ficlopediaUITests */,
+				3391D9CF228E651900CEBC99 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3391D9CF228E651900CEBC99 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3391D9CE228E651900CEBC99 /* ficlopedia.app */,
+				3391D9E5228E651A00CEBC99 /* ficlopediaTests.xctest */,
+				3391D9F0228E651A00CEBC99 /* ficlopediaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3391D9D0228E651900CEBC99 /* ficlopedia */ = {
+			isa = PBXGroup;
+			children = (
+				3391D9D1228E651900CEBC99 /* AppDelegate.swift */,
+				3391D9D3228E651900CEBC99 /* ViewController.swift */,
+				3391D9D5228E651900CEBC99 /* Main.storyboard */,
+				3391D9DB228E651900CEBC99 /* Assets.xcassets */,
+				3391D9DD228E651900CEBC99 /* LaunchScreen.storyboard */,
+				3391D9E0228E651A00CEBC99 /* Info.plist */,
+				3391D9D8228E651900CEBC99 /* ficlopedia.xcdatamodeld */,
+			);
+			path = ficlopedia;
+			sourceTree = "<group>";
+		};
+		3391D9E8228E651A00CEBC99 /* ficlopediaTests */ = {
+			isa = PBXGroup;
+			children = (
+				3391D9E9228E651A00CEBC99 /* ficlopediaTests.swift */,
+				3391D9EB228E651A00CEBC99 /* Info.plist */,
+			);
+			path = ficlopediaTests;
+			sourceTree = "<group>";
+		};
+		3391D9F3228E651A00CEBC99 /* ficlopediaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3391D9F4228E651A00CEBC99 /* ficlopediaUITests.swift */,
+				3391D9F6228E651A00CEBC99 /* Info.plist */,
+			);
+			path = ficlopediaUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3391D9CD228E651900CEBC99 /* ficlopedia */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3391D9F9228E651A00CEBC99 /* Build configuration list for PBXNativeTarget "ficlopedia" */;
+			buildPhases = (
+				3391D9CA228E651900CEBC99 /* Sources */,
+				3391D9CB228E651900CEBC99 /* Frameworks */,
+				3391D9CC228E651900CEBC99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ficlopedia;
+			productName = ficlopedia;
+			productReference = 3391D9CE228E651900CEBC99 /* ficlopedia.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3391D9E4228E651A00CEBC99 /* ficlopediaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3391D9FC228E651A00CEBC99 /* Build configuration list for PBXNativeTarget "ficlopediaTests" */;
+			buildPhases = (
+				3391D9E1228E651A00CEBC99 /* Sources */,
+				3391D9E2228E651A00CEBC99 /* Frameworks */,
+				3391D9E3228E651A00CEBC99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3391D9E7228E651A00CEBC99 /* PBXTargetDependency */,
+			);
+			name = ficlopediaTests;
+			productName = ficlopediaTests;
+			productReference = 3391D9E5228E651A00CEBC99 /* ficlopediaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3391D9EF228E651A00CEBC99 /* ficlopediaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3391D9FF228E651A00CEBC99 /* Build configuration list for PBXNativeTarget "ficlopediaUITests" */;
+			buildPhases = (
+				3391D9EC228E651A00CEBC99 /* Sources */,
+				3391D9ED228E651A00CEBC99 /* Frameworks */,
+				3391D9EE228E651A00CEBC99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3391D9F2228E651A00CEBC99 /* PBXTargetDependency */,
+			);
+			name = ficlopediaUITests;
+			productName = ficlopediaUITests;
+			productReference = 3391D9F0228E651A00CEBC99 /* ficlopediaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3391D9C6228E651900CEBC99 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Intro To Fi";
+				TargetAttributes = {
+					3391D9CD228E651900CEBC99 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					3391D9E4228E651A00CEBC99 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 3391D9CD228E651900CEBC99;
+					};
+					3391D9EF228E651A00CEBC99 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 3391D9CD228E651900CEBC99;
+					};
+				};
+			};
+			buildConfigurationList = 3391D9C9228E651900CEBC99 /* Build configuration list for PBXProject "ficlopedia" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3391D9C5228E651900CEBC99;
+			productRefGroup = 3391D9CF228E651900CEBC99 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3391D9CD228E651900CEBC99 /* ficlopedia */,
+				3391D9E4228E651A00CEBC99 /* ficlopediaTests */,
+				3391D9EF228E651A00CEBC99 /* ficlopediaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3391D9CC228E651900CEBC99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3391D9DF228E651900CEBC99 /* LaunchScreen.storyboard in Resources */,
+				3391D9DC228E651900CEBC99 /* Assets.xcassets in Resources */,
+				3391D9D7228E651900CEBC99 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3391D9E3228E651A00CEBC99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3391D9EE228E651A00CEBC99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3391D9CA228E651900CEBC99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3391D9D4228E651900CEBC99 /* ViewController.swift in Sources */,
+				3391D9DA228E651900CEBC99 /* ficlopedia.xcdatamodeld in Sources */,
+				3391D9D2228E651900CEBC99 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3391D9E1228E651A00CEBC99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3391D9EA228E651A00CEBC99 /* ficlopediaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3391D9EC228E651A00CEBC99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3391D9F5228E651A00CEBC99 /* ficlopediaUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3391D9E7228E651A00CEBC99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3391D9CD228E651900CEBC99 /* ficlopedia */;
+			targetProxy = 3391D9E6228E651A00CEBC99 /* PBXContainerItemProxy */;
+		};
+		3391D9F2228E651A00CEBC99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3391D9CD228E651900CEBC99 /* ficlopedia */;
+			targetProxy = 3391D9F1228E651A00CEBC99 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3391D9D5228E651900CEBC99 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3391D9D6228E651900CEBC99 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3391D9DD228E651900CEBC99 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3391D9DE228E651900CEBC99 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3391D9F7228E651A00CEBC99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3391D9F8228E651A00CEBC99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3391D9FA228E651A00CEBC99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LQZNX2BQDV;
+				INFOPLIST_FILE = ficlopedia/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.introtofi.ficlopedia;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3391D9FB228E651A00CEBC99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LQZNX2BQDV;
+				INFOPLIST_FILE = ficlopedia/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.introtofi.ficlopedia;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3391D9FD228E651A00CEBC99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LQZNX2BQDV;
+				INFOPLIST_FILE = ficlopediaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.introtofi.ficlopediaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ficlopedia.app/ficlopedia";
+			};
+			name = Debug;
+		};
+		3391D9FE228E651A00CEBC99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LQZNX2BQDV;
+				INFOPLIST_FILE = ficlopediaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.introtofi.ficlopediaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ficlopedia.app/ficlopedia";
+			};
+			name = Release;
+		};
+		3391DA00228E651A00CEBC99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LQZNX2BQDV;
+				INFOPLIST_FILE = ficlopediaUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.introtofi.ficlopediaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ficlopedia;
+			};
+			name = Debug;
+		};
+		3391DA01228E651A00CEBC99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LQZNX2BQDV;
+				INFOPLIST_FILE = ficlopediaUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.introtofi.ficlopediaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ficlopedia;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3391D9C9228E651900CEBC99 /* Build configuration list for PBXProject "ficlopedia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3391D9F7228E651A00CEBC99 /* Debug */,
+				3391D9F8228E651A00CEBC99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3391D9F9228E651A00CEBC99 /* Build configuration list for PBXNativeTarget "ficlopedia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3391D9FA228E651A00CEBC99 /* Debug */,
+				3391D9FB228E651A00CEBC99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3391D9FC228E651A00CEBC99 /* Build configuration list for PBXNativeTarget "ficlopediaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3391D9FD228E651A00CEBC99 /* Debug */,
+				3391D9FE228E651A00CEBC99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3391D9FF228E651A00CEBC99 /* Build configuration list for PBXNativeTarget "ficlopediaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3391DA00228E651A00CEBC99 /* Debug */,
+				3391DA01228E651A00CEBC99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3391D9D8228E651900CEBC99 /* ficlopedia.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3391D9D9228E651900CEBC99 /* ficlopedia.xcdatamodel */,
+			);
+			currentVersion = 3391D9D9228E651900CEBC99 /* ficlopedia.xcdatamodel */;
+			path = ficlopedia.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3391D9C6228E651900CEBC99 /* Project object */;
+}
