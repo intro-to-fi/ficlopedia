@@ -5,6 +5,7 @@
 
 import CoreData
 import Firebase
+import FirebaseUI
 import UIKit
 
 @UIApplicationMain
@@ -31,6 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         self.saveContext()
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if let sourceApplication = options[.sourceApplication] as? String,
+            let handled = FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication),
+            handled {
+                return handled
+        }
+        return false
     }
 
     // MARK: - Core Data stack
