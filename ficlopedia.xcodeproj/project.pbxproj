@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18CADE3074D1E8D996EC965C /* Pods_ficlopedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6726B195E95B3DD5B7D4E2BC /* Pods_ficlopedia.framework */; };
 		3391D9D2228E651900CEBC99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391D9D1228E651900CEBC99 /* AppDelegate.swift */; };
 		3391D9D4228E651900CEBC99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391D9D3228E651900CEBC99 /* ViewController.swift */; };
 		3391D9D7228E651900CEBC99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3391D9D5228E651900CEBC99 /* Main.storyboard */; };
@@ -15,6 +16,8 @@
 		3391D9DF228E651900CEBC99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3391D9DD228E651900CEBC99 /* LaunchScreen.storyboard */; };
 		3391D9EA228E651A00CEBC99 /* ficlopediaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391D9E9228E651A00CEBC99 /* ficlopediaTests.swift */; };
 		3391D9F5228E651A00CEBC99 /* ficlopediaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391D9F4228E651A00CEBC99 /* ficlopediaUITests.swift */; };
+		77476E16D25B027AB21A5F5E /* Pods_ficlopediaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3129E85FF8FF8810426264BE /* Pods_ficlopediaUITests.framework */; };
+		F82CE01AF22C044FC5617209 /* Pods_ficlopediaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3D18CCEAD8E5043BE4F4BC /* Pods_ficlopediaTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2EA38283F0B8B5E67780590E /* Pods-ficlopediaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ficlopediaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ficlopediaUITests/Pods-ficlopediaUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3129E85FF8FF8810426264BE /* Pods_ficlopediaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ficlopediaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3391D9CE228E651900CEBC99 /* ficlopedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ficlopedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3391D9D1228E651900CEBC99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3391D9D3228E651900CEBC99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +54,13 @@
 		3391D9F0228E651A00CEBC99 /* ficlopediaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ficlopediaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3391D9F4228E651A00CEBC99 /* ficlopediaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ficlopediaUITests.swift; sourceTree = "<group>"; };
 		3391D9F6228E651A00CEBC99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		39DD2232F5C00E682EE77AC2 /* Pods-ficlopediaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ficlopediaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ficlopediaTests/Pods-ficlopediaTests.release.xcconfig"; sourceTree = "<group>"; };
+		6726B195E95B3DD5B7D4E2BC /* Pods_ficlopedia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ficlopedia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C07FD73B306D874C6BCC658 /* Pods-ficlopediaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ficlopediaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ficlopediaUITests/Pods-ficlopediaUITests.release.xcconfig"; sourceTree = "<group>"; };
+		70A7FB4B54AE204350281E41 /* Pods-ficlopedia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ficlopedia.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ficlopedia/Pods-ficlopedia.debug.xcconfig"; sourceTree = "<group>"; };
+		7ED02FB1D622A5CA4C1036AF /* Pods-ficlopediaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ficlopediaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ficlopediaTests/Pods-ficlopediaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8D727C0761029BCEB32C00B4 /* Pods-ficlopedia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ficlopedia.release.xcconfig"; path = "Pods/Target Support Files/Pods-ficlopedia/Pods-ficlopedia.release.xcconfig"; sourceTree = "<group>"; };
+		9F3D18CCEAD8E5043BE4F4BC /* Pods_ficlopediaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ficlopediaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18CADE3074D1E8D996EC965C /* Pods_ficlopedia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F82CE01AF22C044FC5617209 /* Pods_ficlopediaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77476E16D25B027AB21A5F5E /* Pods_ficlopediaUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +98,8 @@
 				3391D9E8228E651A00CEBC99 /* ficlopediaTests */,
 				3391D9F3228E651A00CEBC99 /* ficlopediaUITests */,
 				3391D9CF228E651900CEBC99 /* Products */,
+				F4B6E95DD05CE52FDA2FF343 /* Pods */,
+				ABF68FD4C9FF3035CF80908D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +145,29 @@
 			path = ficlopediaUITests;
 			sourceTree = "<group>";
 		};
+		ABF68FD4C9FF3035CF80908D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6726B195E95B3DD5B7D4E2BC /* Pods_ficlopedia.framework */,
+				9F3D18CCEAD8E5043BE4F4BC /* Pods_ficlopediaTests.framework */,
+				3129E85FF8FF8810426264BE /* Pods_ficlopediaUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4B6E95DD05CE52FDA2FF343 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				70A7FB4B54AE204350281E41 /* Pods-ficlopedia.debug.xcconfig */,
+				8D727C0761029BCEB32C00B4 /* Pods-ficlopedia.release.xcconfig */,
+				7ED02FB1D622A5CA4C1036AF /* Pods-ficlopediaTests.debug.xcconfig */,
+				39DD2232F5C00E682EE77AC2 /* Pods-ficlopediaTests.release.xcconfig */,
+				2EA38283F0B8B5E67780590E /* Pods-ficlopediaUITests.debug.xcconfig */,
+				6C07FD73B306D874C6BCC658 /* Pods-ficlopediaUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +175,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3391D9F9228E651A00CEBC99 /* Build configuration list for PBXNativeTarget "ficlopedia" */;
 			buildPhases = (
+				64AD9139B2267D3F37AD4850 /* [CP] Check Pods Manifest.lock */,
 				3391D9CA228E651900CEBC99 /* Sources */,
 				3391D9CB228E651900CEBC99 /* Frameworks */,
 				3391D9CC228E651900CEBC99 /* Resources */,
@@ -152,6 +193,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3391D9FC228E651A00CEBC99 /* Build configuration list for PBXNativeTarget "ficlopediaTests" */;
 			buildPhases = (
+				F03A26ED5AB2B09AA28368C7 /* [CP] Check Pods Manifest.lock */,
 				3391D9E1228E651A00CEBC99 /* Sources */,
 				3391D9E2228E651A00CEBC99 /* Frameworks */,
 				3391D9E3228E651A00CEBC99 /* Resources */,
@@ -170,6 +212,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3391D9FF228E651A00CEBC99 /* Build configuration list for PBXNativeTarget "ficlopediaUITests" */;
 			buildPhases = (
+				6F6425A0530148A01B3C95EA /* [CP] Check Pods Manifest.lock */,
 				3391D9EC228E651A00CEBC99 /* Sources */,
 				3391D9ED228E651A00CEBC99 /* Frameworks */,
 				3391D9EE228E651A00CEBC99 /* Resources */,
@@ -253,6 +296,63 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		64AD9139B2267D3F37AD4850 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ficlopedia-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F6425A0530148A01B3C95EA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ficlopediaUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F03A26ED5AB2B09AA28368C7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ficlopediaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3391D9CA228E651900CEBC99 /* Sources */ = {
@@ -434,6 +534,7 @@
 		};
 		3391D9FA228E651A00CEBC99 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70A7FB4B54AE204350281E41 /* Pods-ficlopedia.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -452,6 +553,7 @@
 		};
 		3391D9FB228E651A00CEBC99 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D727C0761029BCEB32C00B4 /* Pods-ficlopedia.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -470,6 +572,7 @@
 		};
 		3391D9FD228E651A00CEBC99 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7ED02FB1D622A5CA4C1036AF /* Pods-ficlopediaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -491,6 +594,7 @@
 		};
 		3391D9FE228E651A00CEBC99 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39DD2232F5C00E682EE77AC2 /* Pods-ficlopediaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +616,7 @@
 		};
 		3391DA00228E651A00CEBC99 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EA38283F0B8B5E67780590E /* Pods-ficlopediaUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -532,6 +637,7 @@
 		};
 		3391DA01228E651A00CEBC99 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6C07FD73B306D874C6BCC658 /* Pods-ficlopediaUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
