@@ -3,13 +3,34 @@
 // Copyright © 2019 Intro To FI. All rights reserved.
 //
 
+import FirebaseAuth
 import UIKit
 
 class EntryListViewController: UIViewController {
     var entries: [String] = ["Test", "Foobar"]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    @IBAction func didTapSignout(_ sender: UIBarButtonItem) {
+        transitionToLoggedOut()
+    }
+    
+    private func transitionToLoggedOut() {
+        if let window = UIApplication.shared.keyWindow {
+            do {
+                try Auth.auth().signOut()
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+                UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromLeft, animations: {
+                    window.rootViewController = vc
+                }, completion: { completed in
+                    // maybe do something here
+                })
+            } catch {
+                print(error)
+            }
+        }
     }
 }
 
