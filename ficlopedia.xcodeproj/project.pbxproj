@@ -17,6 +17,8 @@
 		3391D9EA228E651A00CEBC99 /* ficlopediaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391D9E9228E651A00CEBC99 /* ficlopediaTests.swift */; };
 		3391D9F5228E651A00CEBC99 /* ficlopediaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391D9F4228E651A00CEBC99 /* ficlopediaUITests.swift */; };
 		33F21F7F228E6892007F027A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33F21F7E228E6892007F027A /* GoogleService-Info.plist */; };
+		33F21F81228E7121007F027A /* EntryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F21F80228E7121007F027A /* EntryListViewController.swift */; };
+		33F21F83228E713C007F027A /* EntryList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33F21F82228E713C007F027A /* EntryList.storyboard */; };
 		77476E16D25B027AB21A5F5E /* Pods_ficlopediaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3129E85FF8FF8810426264BE /* Pods_ficlopediaUITests.framework */; };
 		F82CE01AF22C044FC5617209 /* Pods_ficlopediaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3D18CCEAD8E5043BE4F4BC /* Pods_ficlopediaTests.framework */; };
 /* End PBXBuildFile section */
@@ -56,6 +58,8 @@
 		3391D9F4228E651A00CEBC99 /* ficlopediaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ficlopediaUITests.swift; sourceTree = "<group>"; };
 		3391D9F6228E651A00CEBC99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33F21F7E228E6892007F027A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		33F21F80228E7121007F027A /* EntryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryListViewController.swift; sourceTree = "<group>"; };
+		33F21F82228E713C007F027A /* EntryList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EntryList.storyboard; sourceTree = "<group>"; };
 		39DD2232F5C00E682EE77AC2 /* Pods-ficlopediaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ficlopediaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ficlopediaTests/Pods-ficlopediaTests.release.xcconfig"; sourceTree = "<group>"; };
 		6726B195E95B3DD5B7D4E2BC /* Pods_ficlopedia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ficlopedia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C07FD73B306D874C6BCC658 /* Pods-ficlopediaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ficlopediaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ficlopediaUITests/Pods-ficlopediaUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -121,7 +125,9 @@
 			children = (
 				3391D9D1228E651900CEBC99 /* AppDelegate.swift */,
 				3391D9D3228E651900CEBC99 /* ViewController.swift */,
+				33F21F80228E7121007F027A /* EntryListViewController.swift */,
 				3391D9D5228E651900CEBC99 /* Main.storyboard */,
+				33F21F82228E713C007F027A /* EntryList.storyboard */,
 				3391D9DB228E651900CEBC99 /* Assets.xcassets */,
 				3391D9DD228E651900CEBC99 /* LaunchScreen.storyboard */,
 				3391D9E0228E651A00CEBC99 /* Info.plist */,
@@ -283,6 +289,7 @@
 			files = (
 				3391D9DF228E651900CEBC99 /* LaunchScreen.storyboard in Resources */,
 				33F21F7F228E6892007F027A /* GoogleService-Info.plist in Resources */,
+				33F21F83228E713C007F027A /* EntryList.storyboard in Resources */,
 				3391D9DC228E651900CEBC99 /* Assets.xcassets in Resources */,
 				3391D9D7228E651900CEBC99 /* Main.storyboard in Resources */,
 			);
@@ -413,6 +420,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3391D9D4228E651900CEBC99 /* ViewController.swift in Sources */,
+				33F21F81228E7121007F027A /* EntryListViewController.swift in Sources */,
 				3391D9DA228E651900CEBC99 /* ficlopedia.xcdatamodeld in Sources */,
 				3391D9D2228E651900CEBC99 /* AppDelegate.swift in Sources */,
 			);
