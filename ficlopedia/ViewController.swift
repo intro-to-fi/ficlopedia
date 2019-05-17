@@ -1,6 +1,6 @@
 //
-//  Created on 5/16/19.
-//  Copyright © 2019 Intro To Fi. All rights reserved.
+// Created 5/16/19.
+// Copyright © 2019 Intro To Fi. All rights reserved.
 //
 
 import FirebaseUI
