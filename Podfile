@@ -7,6 +7,7 @@ target 'ficlopedia' do
 
   # Pods for ficlopedia
   pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
   pod 'FirebaseUI/Auth'
   pod 'FirebaseUI/Google'
 
