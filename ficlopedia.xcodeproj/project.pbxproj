@@ -192,7 +192,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = "Intro To Fi";
+				ORGANIZATIONNAME = "Intro To FI";
 				TargetAttributes = {
 					3391D9CD228E651900CEBC99 = {
 						CreatedOnToolsVersion = 10.1;
