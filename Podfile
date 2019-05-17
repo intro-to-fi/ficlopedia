@@ -7,6 +7,8 @@ target 'ficlopedia' do
 
   # Pods for ficlopedia
   pod 'Firebase/Core'
+  pod 'FirebaseUI/Auth'
+  pod 'FirebaseUI/Google'
 
   target 'ficlopediaTests' do
     inherit! :search_paths
