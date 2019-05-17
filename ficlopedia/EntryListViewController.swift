@@ -4,13 +4,35 @@
 //
 
 import FirebaseAuth
+import FirebaseFirestore
 import UIKit
 
 class EntryListViewController: UIViewController {
-    var entries: [String] = ["Test", "Foobar"]
+  @IBOutlet weak var tableview: UITableView!
+  var entries: [String] = ["Test", "Foobar"] {
+        didSet {
+            tableview.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let db = Firestore.firestore()
+        db.collection("entries").getDocuments() { (querySnapshot, err) in
+            self.entries = querySnapshot!.documents.map { $0.data()["value"] as! String }
+//            if let err = err {
+//                print("Error getting documents: \(err)")
+//            } else {
+//                for document in querySnapshot!.documents {
+//                    print("\(document.documentID) => \(document.data())")
+//                }
+//            }
+        }
+
     }
     
     @IBAction func didTapSignout(_ sender: UIBarButtonItem) {
