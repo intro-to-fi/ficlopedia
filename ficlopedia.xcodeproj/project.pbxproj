@@ -103,6 +103,7 @@
 				F4B6E95DD05CE52FDA2FF343 /* Pods */,
 				ABF68FD4C9FF3035CF80908D /* Frameworks */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
 		};
 		3391D9CF228E651900CEBC99 /* Products */ = {
