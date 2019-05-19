@@ -120,9 +120,9 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="RH2-h4-dq9" secondAttribute="trailing" constant="20" symbolic="YES" id="3Pn-cr-lg8"/>
+                                    <constraint firstAttribute="trailing" secondItem="RH2-h4-dq9" secondAttribute="trailing" constant="8" id="3Pn-cr-lg8"/>
                                     <constraint firstAttribute="bottom" secondItem="RH2-h4-dq9" secondAttribute="bottom" constant="20" symbolic="YES" id="E0r-ZB-Dke"/>
-                                    <constraint firstItem="RH2-h4-dq9" firstAttribute="leading" secondItem="S6L-UQ-nkY" secondAttribute="leading" constant="20" symbolic="YES" id="RLC-Bl-3Rn"/>
+                                    <constraint firstItem="RH2-h4-dq9" firstAttribute="leading" secondItem="S6L-UQ-nkY" secondAttribute="leading" constant="8" id="RLC-Bl-3Rn"/>
                                     <constraint firstItem="RH2-h4-dq9" firstAttribute="top" secondItem="S6L-UQ-nkY" secondAttribute="top" constant="20" symbolic="YES" id="hhK-dE-eYG"/>
                                 </constraints>
                             </scrollView>
