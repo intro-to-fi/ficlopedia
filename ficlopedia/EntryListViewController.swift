@@ -10,7 +10,7 @@ import UIKit
 class EntryListViewController: UIViewController {
     let db = Firestore.firestore()
     @IBOutlet weak var tableview: UITableView!
-    var entries: [String] = ["Test", "Foobar"] {
+    var entries: [Entry] = [] {
         didSet {
             tableview.reloadData()
         }
@@ -36,7 +36,11 @@ class EntryListViewController: UIViewController {
     private func refreshData() {
         db.collection("entries").getDocuments() { (querySnapshot, err) in
             self.tableview.refreshControl?.endRefreshing()
-            self.entries = querySnapshot!.documents.map { $0.data()["value"] as! String }
+            self.entries = querySnapshot!.documents
+                .compactMap {
+                    try? JSONDecoder().decode(Entry.self, from: JSONSerialization.data(withJSONObject: $0.data(), options: []))
+                }
+                .sorted { $0.value < $1.value }
         }
     }
     
@@ -65,7 +69,8 @@ extension EntryListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "entryListViewCell", for: indexPath)
         let entry = entries[indexPath.row]
-        cell.textLabel?.text = entry
+        cell.textLabel?.text = entry.value
+        cell.detailTextLabel?.text = entry.description
         return cell
     }
 }
