@@ -9,18 +9,20 @@ import UIKit
 
 class EntryListViewController: UIViewController {
     let db = Firestore.firestore()
+    let spinner = UIActivityIndicatorView()
+
     @IBOutlet weak var tableview: UITableView!
+
     var entries: [Entry] = [] {
         didSet {
             tableview.reloadData()
+            entries.isEmpty ? spinner.startAnimating() : spinner.stopAnimating()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let spinner = UIRefreshControl()
-        tableview.refreshControl = spinner
-        spinner.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        setupView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,6 +61,24 @@ class EntryListViewController: UIViewController {
             }
         }
     }
+    
+    private func setupView() {
+        spinner.hidesWhenStopped = true
+        spinner.startAnimating()
+        view.addSubview(spinner)
+        spinner.style = .whiteLarge
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        spinner.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        spinner.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        spinner.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        spinner.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
+
+        let refreshControl = UIRefreshControl()
+        tableview.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        tableview.tableFooterView = UIView()
+    }
 }
 
 extension EntryListViewController: UITableViewDataSource {
@@ -76,5 +96,8 @@ extension EntryListViewController: UITableViewDataSource {
 }
 
 extension EntryListViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let controller = UIViewController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
