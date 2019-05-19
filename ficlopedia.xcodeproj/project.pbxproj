@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		18CADE3074D1E8D996EC965C /* Pods_ficlopedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6726B195E95B3DD5B7D4E2BC /* Pods_ficlopedia.framework */; };
 		336573822291284400166ECB /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336573812291284400166ECB /* Entry.swift */; };
+		3365738422912DC200166ECB /* EntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3365738322912DC200166ECB /* EntryDetailViewController.swift */; };
 		3391D9D2228E651900CEBC99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391D9D1228E651900CEBC99 /* AppDelegate.swift */; };
 		3391D9D4228E651900CEBC99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391D9D3228E651900CEBC99 /* ViewController.swift */; };
 		3391D9D7228E651900CEBC99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3391D9D5228E651900CEBC99 /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		2EA38283F0B8B5E67780590E /* Pods-ficlopediaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ficlopediaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ficlopediaUITests/Pods-ficlopediaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3129E85FF8FF8810426264BE /* Pods_ficlopediaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ficlopediaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		336573812291284400166ECB /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		3365738322912DC200166ECB /* EntryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailViewController.swift; sourceTree = "<group>"; };
 		3391D9CE228E651900CEBC99 /* ficlopedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ficlopedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3391D9D1228E651900CEBC99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3391D9D3228E651900CEBC99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				3391D9D1228E651900CEBC99 /* AppDelegate.swift */,
 				3391D9D3228E651900CEBC99 /* ViewController.swift */,
 				33F21F80228E7121007F027A /* EntryListViewController.swift */,
+				3365738322912DC200166ECB /* EntryDetailViewController.swift */,
 				336573812291284400166ECB /* Entry.swift */,
 				3391D9D5228E651900CEBC99 /* Main.storyboard */,
 				33F21F82228E713C007F027A /* EntryList.storyboard */,
@@ -438,6 +441,7 @@
 				3391D9D4228E651900CEBC99 /* ViewController.swift in Sources */,
 				33F21F81228E7121007F027A /* EntryListViewController.swift in Sources */,
 				3391D9DA228E651900CEBC99 /* ficlopedia.xcdatamodeld in Sources */,
+				3365738422912DC200166ECB /* EntryDetailViewController.swift in Sources */,
 				3391D9D2228E651900CEBC99 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
