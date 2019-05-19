@@ -97,7 +97,9 @@ extension EntryListViewController: UITableViewDataSource {
 
 extension EntryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = UIViewController()
-        navigationController?.pushViewController(controller, animated: true)
+        guard let vc = UIStoryboard(name: "EntryList", bundle: nil)
+            .instantiateViewController(withIdentifier: "entryDetailViewController") as? EntryDetailViewController else { return }
+        navigationController?.pushViewController(vc, animated: true)
+        vc.configure(with: entries[indexPath.row])
     }
 }
