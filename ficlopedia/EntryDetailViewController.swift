@@ -16,7 +16,7 @@ class EntryDetailViewController: UIViewController {
     private let db = Firestore.firestore()
     
     var entry: Entry?
-    var hasEdits: Bool = false {
+    private var hasEdits: Bool = false {
         didSet {
             if hasEdits {
                 navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .cancel, target: self, action: #selector(didTapCancel))
@@ -29,7 +29,7 @@ class EntryDetailViewController: UIViewController {
     }
     
     @objc
-    func didTapCancel() {
+    private func didTapCancel() {
         if let entry = entry {
             load(from: entry)
         }
@@ -56,7 +56,7 @@ class EntryDetailViewController: UIViewController {
         self.entry = entry
     }
     
-    func load(from entry: Entry) {
+    private func load(from entry: Entry) {
         valueLabel.text = "Value"
         valueTextField.text = entry.value
         descriptionLabel.text = "Description"
@@ -64,7 +64,7 @@ class EntryDetailViewController: UIViewController {
     }
     
     @objc
-    func keyboardDidShow(notification: NSNotification) {
+    private func keyboardDidShow(notification: NSNotification) {
         guard let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
             return
         }
@@ -72,7 +72,7 @@ class EntryDetailViewController: UIViewController {
         scrollView.contentInset = .init(top: 0, left: 0, bottom: keyboardEnd.height, right: 0)
     }
     @objc
-    func keyboardWillHide(notification: NSNotification) {
+    private func keyboardWillHide(notification: NSNotification) {
         scrollView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 0)
     }
 }
