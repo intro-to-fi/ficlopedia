@@ -39,9 +39,7 @@ class EntryListViewController: UIViewController {
         db.collection("entries").getDocuments() { (querySnapshot, err) in
             self.tableview.refreshControl?.endRefreshing()
             self.entries = querySnapshot!.documents
-                .compactMap {
-                    try? JSONDecoder().decode(Entry.self, from: JSONSerialization.data(withJSONObject: $0.data(), options: []))
-                }
+                .compactMap { $0.decode() }
                 .sorted { $0.value < $1.value }
         }
     }
