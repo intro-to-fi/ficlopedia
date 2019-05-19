@@ -8,8 +8,9 @@ import FirebaseFirestore
 import UIKit
 
 class EntryListViewController: UIViewController {
-  @IBOutlet weak var tableview: UITableView!
-  var entries: [String] = ["Test", "Foobar"] {
+    let db = Firestore.firestore()
+    @IBOutlet weak var tableview: UITableView!
+    var entries: [String] = ["Test", "Foobar"] {
         didSet {
             tableview.reloadData()
         }
@@ -17,26 +18,26 @@ class EntryListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let spinner = UIRefreshControl()
+        tableview.refreshControl = spinner
+        spinner.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let db = Firestore.firestore()
-        db.collection("entries").getDocuments() { (querySnapshot, err) in
-            self.entries = querySnapshot!.documents.map { $0.data()["value"] as! String }
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    print("\(document.documentID) => \(document.data())")
-//                }
-//            }
-        }
-
+        refreshData()
     }
     
     @IBAction func didTapSignout(_ sender: UIBarButtonItem) {
         transitionToLoggedOut()
+    }
+    
+    @objc
+    private func refreshData() {
+        db.collection("entries").getDocuments() { (querySnapshot, err) in
+            self.tableview.refreshControl?.endRefreshing()
+            self.entries = querySnapshot!.documents.map { $0.data()["value"] as! String }
+        }
     }
     
     private func transitionToLoggedOut() {
