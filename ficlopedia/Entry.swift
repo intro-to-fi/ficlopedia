@@ -5,7 +5,8 @@
 
 import Foundation
 
-struct Entry: Codable {
+struct Entry: FirebaseCodable {
+    let id: String
     let value: String
     let description: String
 }
