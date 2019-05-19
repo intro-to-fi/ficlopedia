@@ -38,6 +38,14 @@ class EntryDetailViewController: UIViewController {
     
     @objc
     func didTapSave() {
+        guard let entry = entry else { return }
+        db.document("entries/\(entry.id)").updateData(["value": valueTextField.text, "description": descriptionTextView.text]) { error in
+            guard error == nil else {
+                print(error)
+                return
+            }
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     override func viewDidLoad() {
