@@ -3,6 +3,7 @@
 // Copyright © 2019 Intro To FI. All rights reserved.
 //
 
+import FirebaseFirestore
 import UIKit
 
 class EntryDetailViewController: UIViewController {
@@ -11,6 +12,8 @@ class EntryDetailViewController: UIViewController {
     @IBOutlet weak var valueTextField: UITextField!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
+    
+    private let db = Firestore.firestore()
     
     var entry: Entry?
     var hasEdits: Bool = false {
