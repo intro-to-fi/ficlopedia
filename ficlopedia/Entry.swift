@@ -9,3 +9,7 @@ struct Entry: Codable {
     let value: String
     let description: String
 }
+
+protocol FirebaseCodable: Decodable {
+    var id: String { get }
+}
