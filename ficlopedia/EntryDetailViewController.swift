@@ -30,31 +30,73 @@ class EntryDetailViewController: UIViewController {
     
     @objc
     private func didTapCancel() {
-        if let entry = entry {
-            load(from: entry)
-        }
+        load(from: entry)
         hasEdits = false
+        view.endEditing(false)
     }
     
     @objc
     func didTapSave() {
+        guard let entry = entry else { createNewEntry(); return }
+        save(entry)
+    }
+    
+    @IBAction func didtapTrash(_ sender: UIBarButtonItem) {
         guard let entry = entry else { return }
-        db.document("entries/\(entry.id)").updateData(["value": valueTextField.text, "description": descriptionTextView.text]) { error in
-            guard error == nil else {
-                print(error)
+        delete(entry)
+    }
+    
+    private func save(_ entry: Entry) {
+        guard let id = entry.id, let value = valueTextField.text, let description = descriptionTextView.text else { return }
+        db.document("entries/\(id)").updateData(["value": value, "description": description]) { error in
+            if let error = error {
+                print(error.localizedDescription)
                 return
             }
             self.navigationController?.popViewController(animated: true)
         }
     }
     
+    private func createNewEntry() {
+        guard let value = valueTextField.text, let description = descriptionTextView.text else { return }
+        let entry = Entry(id: nil, value: value, description: description, status: .draft)
+        db.collection("entries").addDocument(data: entry.data) { error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    private func delete(_ entry: Entry) {
+        guard let id = entry.id else { return }
+        let alertController = UIAlertController(title: "Delete Entry", message: "Are you sure?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
+            self.db.document("entries/\(id)").delete { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+        alertController.addAction(yesAction)
+        alertController.preferredAction = yesAction
+        alertController.addAction(.init(title: "Cancel", style: .default))
+        present(alertController, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let entry = entry {
-            load(from: entry)
-        }
+        load(from: entry)
+        valueLabel.text = "Value"
         valueTextField.delegate = self
+        descriptionLabel.text = "Description"
         descriptionTextView.delegate = self
+        descriptionTextView.layer.borderWidth = 0.5
+        descriptionTextView.layer.borderColor = UIColor(white: 210.0/255.0, alpha: 1).cgColor
+        descriptionTextView.layer.cornerRadius = 5
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -64,11 +106,9 @@ class EntryDetailViewController: UIViewController {
         self.entry = entry
     }
     
-    private func load(from entry: Entry) {
-        valueLabel.text = "Value"
-        valueTextField.text = entry.value
-        descriptionLabel.text = "Description"
-        descriptionTextView.text = entry.description
+    private func load(from entry: Entry?) {
+        valueTextField.text = entry?.value
+        descriptionTextView.text = entry?.description
     }
     
     @objc

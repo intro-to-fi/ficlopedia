@@ -33,14 +33,17 @@ class EntryListViewController: UIViewController {
     @IBAction func didTapSignout(_ sender: UIBarButtonItem) {
         transitionToLoggedOut()
     }
+    @IBAction func didTapAdd(_ sender: UIBarButtonItem) {
+        navigateToEntryView(with: nil)
+    }
     
     @objc
     private func refreshData() {
         db.collection("entries").getDocuments() { (querySnapshot, err) in
             self.tableview.refreshControl?.endRefreshing()
-            self.entries = querySnapshot!.documents
+            self.entries = querySnapshot?.documents
                 .compactMap { $0.decode() }
-                .sorted { $0.value < $1.value }
+                .sorted { $0.value < $1.value } ?? []
         }
     }
     
@@ -57,6 +60,15 @@ class EntryListViewController: UIViewController {
             } catch {
                 print(error)
             }
+        }
+    }
+    
+    private func navigateToEntryView(with entry: Entry?) {
+        guard let vc = UIStoryboard(name: "EntryList", bundle: nil)
+            .instantiateViewController(withIdentifier: "entryDetailViewController") as? EntryDetailViewController else { return }
+        navigationController?.pushViewController(vc, animated: true)
+        if let entry = entry {
+            vc.configure(with: entry)
         }
     }
     
@@ -95,9 +107,6 @@ extension EntryListViewController: UITableViewDataSource {
 
 extension EntryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let vc = UIStoryboard(name: "EntryList", bundle: nil)
-            .instantiateViewController(withIdentifier: "entryDetailViewController") as? EntryDetailViewController else { return }
-        navigationController?.pushViewController(vc, animated: true)
-        vc.configure(with: entries[indexPath.row])
+        navigateToEntryView(with: entries[indexPath.row])
     }
 }
