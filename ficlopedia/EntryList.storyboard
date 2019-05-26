@@ -93,29 +93,55 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="S6L-UQ-nkY">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="RH2-h4-dq9">
-                                        <rect key="frame" x="8" y="20" width="359" height="125"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RH2-h4-dq9">
+                                        <rect key="frame" x="8" y="20" width="359" height="186"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wpW-7I-iXv">
+                                                <rect key="frame" x="0.0" y="0.0" width="359" height="50"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NrR-0W-JJx">
+                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="50"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhV-9L-3k3">
+                                                        <rect key="frame" x="50" y="-4.5" width="46" height="30"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="didTapStatusButton:" destination="Sdo-7y-G8b" eventType="touchUpInside" id="I18-qL-tP2"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="NrR-0W-JJx" firstAttribute="leading" secondItem="wpW-7I-iXv" secondAttribute="leading" id="Fcz-J5-6DT"/>
+                                                    <constraint firstItem="NrR-0W-JJx" firstAttribute="top" secondItem="wpW-7I-iXv" secondAttribute="top" id="M3b-D5-kPv"/>
+                                                    <constraint firstAttribute="bottom" secondItem="NrR-0W-JJx" secondAttribute="bottom" id="ZDi-qI-wZn"/>
+                                                    <constraint firstItem="nhV-9L-3k3" firstAttribute="leading" secondItem="NrR-0W-JJx" secondAttribute="trailing" constant="8" id="pQv-Xh-UVg"/>
+                                                    <constraint firstItem="nhV-9L-3k3" firstAttribute="firstBaseline" secondItem="NrR-0W-JJx" secondAttribute="firstBaseline" id="s8f-0o-J9d"/>
+                                                </constraints>
+                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mNs-gw-nSH">
-                                                <rect key="frame" x="0.0" y="0.0" width="359" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="58" width="359" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5eC-We-av1">
-                                                <rect key="frame" x="0.0" y="27.5" width="359" height="30"/>
+                                                <rect key="frame" x="0.0" y="86.5" width="359" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7X-sP-8ZK">
-                                                <rect key="frame" x="0.0" y="64.5" width="359" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="124.5" width="359" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lun-H2-A7D">
-                                                <rect key="frame" x="0.0" y="92" width="359" height="33"/>
+                                                <rect key="frame" x="0.0" y="153" width="359" height="33"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -153,6 +179,8 @@
                         <outlet property="descriptionLabel" destination="S7X-sP-8ZK" id="FVH-Ku-AOW"/>
                         <outlet property="descriptionTextView" destination="lun-H2-A7D" id="xAJ-Sj-uMm"/>
                         <outlet property="scrollView" destination="S6L-UQ-nkY" id="Ao6-bN-dCj"/>
+                        <outlet property="statusButton" destination="nhV-9L-3k3" id="PsK-zV-MLG"/>
+                        <outlet property="statusLabel" destination="NrR-0W-JJx" id="B4S-Ke-tOc"/>
                         <outlet property="valueLabel" destination="mNs-gw-nSH" id="Xbi-g6-FcE"/>
                         <outlet property="valueTextField" destination="5eC-We-av1" id="00X-5K-IpI"/>
                     </connections>

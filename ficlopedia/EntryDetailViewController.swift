@@ -8,12 +8,14 @@ import UIKit
 
 class EntryDetailViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var statusButton: UIButton!
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var valueTextField: UITextField!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     
-    let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSave))
+    var saveButton: UIBarButtonItem!
     
     private let db = Firestore.firestore()
     
@@ -39,6 +41,10 @@ class EntryDetailViewController: UIViewController {
         view.endEditing(false)
     }
     
+    @IBAction func didTapStatusButton(_ sender: Any) {
+        selectStatus()
+    }
+    
     @objc
     func didTapSave() {
         guard let entry = entry else { createNewEntry(); return }
@@ -50,9 +56,53 @@ class EntryDetailViewController: UIViewController {
         delete(entry)
     }
     
+    private func selectStatus() {
+        var datasource: SimpleTableViewDataAndDelegate?
+        datasource = SimpleTableViewDataAndDelegate(strings: EntryStatus.statuses, subStrings: nil) { indexPath in
+            self.dismiss(animated: true) {
+                self.statusButton.setTitle(EntryStatus.statuses[indexPath.row], for: .normal)
+                self.hasEdits = true
+                datasource = nil
+            }
+        }
+        let tvc = UITableViewController()
+        tvc.tableView.tableFooterView = UIView()
+        tvc.tableView.dataSource = datasource
+        tvc.tableView.delegate = datasource
+        tvc.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        present(tvc, animated: true) {
+            tvc.tableView.reloadData()
+        }
+    }
+    
+    class SimpleTableViewDataAndDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
+        let strings: [String]
+        let subStrings: [String]?
+        let onSelectRow: (IndexPath) -> ()
+        init(strings: [String], subStrings: [String]?, onSelectRow: @escaping (IndexPath) -> ()) {
+            self.strings = strings
+            self.subStrings = subStrings
+            self.onSelectRow = onSelectRow
+        }
+        
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return strings.count
+        }
+        
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            cell.textLabel?.text = strings[indexPath.row]
+            return cell
+        }
+        
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            onSelectRow(indexPath)
+        }
+    }
+    
     private func save(_ entry: Entry) {
-        guard let id = entry.id, let value = valueTextField.text, let description = descriptionTextView.text else { return }
-        db.document("entries/\(id)").updateData(["value": value, "description": description]) { error in
+        guard let id = entry.id, let entry = entryFromForm else { return }
+        db.document("entries/\(id)").updateData(entry.data) { error in
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -62,8 +112,7 @@ class EntryDetailViewController: UIViewController {
     }
     
     private func createNewEntry() {
-        guard let value = valueTextField.text, let description = descriptionTextView.text else { return }
-        let entry = Entry(id: nil, value: value, description: description, status: .draft)
+        guard let entry = entryFromForm else { return }
         db.collection("entries").addDocument(data: entry.data) { error in
             if let error = error {
                 print(error.localizedDescription)
@@ -71,6 +120,14 @@ class EntryDetailViewController: UIViewController {
             }
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    private var entryFromForm: Entry? {
+        guard let value = valueTextField.text,
+            let description = descriptionTextView.text,
+            let statusText = statusButton.titleLabel?.text,
+            let status = EntryStatus(rawValue: statusText) else { return nil}
+        return Entry(id: entry?.id, value: value, description: description, status: status)
     }
     
     private func delete(_ entry: Entry) {
@@ -94,6 +151,8 @@ class EntryDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         load(from: entry)
+        saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSave))
+        statusLabel.text = "Status"
         valueLabel.text = "Value"
         valueTextField.delegate = self
         descriptionLabel.text = "Description"
@@ -111,6 +170,7 @@ class EntryDetailViewController: UIViewController {
     }
     
     private func load(from entry: Entry?) {
+        statusButton.setTitle(entry?.status.rawValue ?? EntryStatus.draft.rawValue, for: .normal)
         valueTextField.text = entry?.value
         descriptionTextView.text = entry?.description
     }

@@ -20,6 +20,12 @@ enum EntryStatus: String, Codable {
     case published
     case inReview = "in review"
     case draft
+    
+    static var statuses: [String] {
+        return [self.published.rawValue,
+                self.inReview.rawValue,
+                self.draft.rawValue]
+    }
 }
 
 extension FirebaseCodable {
