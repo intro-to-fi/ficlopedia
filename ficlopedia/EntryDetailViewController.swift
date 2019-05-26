@@ -13,17 +13,21 @@ class EntryDetailViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     
+    let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSave))
+    
     private let db = Firestore.firestore()
     
     var entry: Entry?
     private var hasEdits: Bool = false {
         didSet {
             if hasEdits {
-                navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .cancel, target: self, action: #selector(didTapCancel))
-                navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .save, target: self, action: #selector(didTapSave))
+                navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapCancel))
+                if !(navigationItem.rightBarButtonItems?.contains(saveButton) ?? false) {
+                    navigationItem.rightBarButtonItems?.append(saveButton)
+                }
             } else {
                 navigationItem.leftBarButtonItem = nil
-                navigationItem.rightBarButtonItem = nil
+                navigationItem.rightBarButtonItems?.removeAll(where: { $0 === saveButton })
             }
         }
     }
@@ -119,6 +123,7 @@ class EntryDetailViewController: UIViewController {
         let keyboardEnd = value.cgRectValue
         scrollView.contentInset = .init(top: 0, left: 0, bottom: keyboardEnd.height, right: 0)
     }
+    
     @objc
     private func keyboardWillHide(notification: NSNotification) {
         scrollView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 0)
