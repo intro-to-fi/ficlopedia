@@ -10,6 +10,8 @@ class EntryDetailViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var statusButton: UIButton!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var valueTextField: UITextField!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -41,8 +43,11 @@ class EntryDetailViewController: UIViewController {
         view.endEditing(false)
     }
     
-    @IBAction func didTapStatusButton(_ sender: Any) {
-        selectStatus()
+    @IBAction func didTapStatusButton(_ sender: UIButton) {
+        select(options: EntryStatus.statuses, forButton: statusButton)
+    }
+    @IBAction func didTapCategoryButton(_ sender: UIButton) {
+        select(options: ["FI", "Investing", "Real Estate", "General Finance"], forButton: categoryButton)
     }
     
     @objc
@@ -56,11 +61,11 @@ class EntryDetailViewController: UIViewController {
         delete(entry)
     }
     
-    private func selectStatus() {
+    private func select(options: [String], forButton button: UIButton) {
         var datasource: SimpleTableViewDataAndDelegate?
-        datasource = SimpleTableViewDataAndDelegate(strings: EntryStatus.statuses, subStrings: nil) { indexPath in
+        datasource = SimpleTableViewDataAndDelegate(strings: options, subStrings: nil) { indexPath in
             self.dismiss(animated: true) {
-                self.statusButton.setTitle(EntryStatus.statuses[indexPath.row], for: .normal)
+                button.setTitle(options[indexPath.row], for: .normal)
                 self.hasEdits = true
                 datasource = nil
             }
@@ -126,8 +131,9 @@ class EntryDetailViewController: UIViewController {
         guard let value = valueTextField.text,
             let description = descriptionTextView.text,
             let statusText = statusButton.titleLabel?.text,
-            let status = EntryStatus(rawValue: statusText) else { return nil}
-        return Entry(id: entry?.id, value: value, description: description, status: status)
+            let status = EntryStatus(rawValue: statusText),
+            let category = categoryButton.titleLabel?.text else { return nil}
+        return Entry(id: entry?.id, value: value, description: description, category: category, status: status)
     }
     
     private func delete(_ entry: Entry) {
@@ -153,6 +159,7 @@ class EntryDetailViewController: UIViewController {
         load(from: entry)
         saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSave))
         statusLabel.text = "Status"
+        categoryLabel.text = "Category"
         valueLabel.text = "Value"
         valueTextField.delegate = self
         descriptionLabel.text = "Description"
@@ -171,6 +178,7 @@ class EntryDetailViewController: UIViewController {
     
     private func load(from entry: Entry?) {
         statusButton.setTitle(entry?.status.rawValue ?? "[Set Status]", for: .normal)
+        categoryButton.setTitle(entry?.category ?? "[Set Category]", for: .normal)
         valueTextField.text = entry?.value
         descriptionTextView.text = entry?.description
     }
