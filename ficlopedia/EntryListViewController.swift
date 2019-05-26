@@ -15,10 +15,16 @@ class EntryListViewController: UIViewController {
 
     var entries: [Entry] = [] {
         didSet {
+            let set = Set(entries.map { ($0.category ?? "[No Category]") + ": " + $0.status.rawValue })
+            categories = set
+                .sorted(by: { $0 < $1 })
+                .map { section in (section, entries.filter { ($0.category ?? "[No Category]") + ": " + $0.status.rawValue == section }) }
             tableview.reloadData()
             entries.isEmpty ? spinner.startAnimating() : spinner.stopAnimating()
         }
     }
+    
+    private var categories: [(category: String?, entries: [Entry])] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,13 +98,21 @@ class EntryListViewController: UIViewController {
 }
 
 extension EntryListViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return categories.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return categories[section].category ?? "[No Category]"
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return entries.count
+        return categories[section].entries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "entryListViewCell", for: indexPath)
-        let entry = entries[indexPath.row]
+        let entry = categories[indexPath.section].entries[indexPath.row]
         cell.textLabel?.text = entry.value
         cell.detailTextLabel?.text = entry.description
         return cell
@@ -107,6 +121,6 @@ extension EntryListViewController: UITableViewDataSource {
 
 extension EntryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigateToEntryView(with: entries[indexPath.row])
+        navigateToEntryView(with: categories[indexPath.section].entries[indexPath.row])
     }
 }
