@@ -170,7 +170,7 @@ class EntryDetailViewController: UIViewController {
     }
     
     private func load(from entry: Entry?) {
-        statusButton.setTitle(entry?.status.rawValue ?? EntryStatus.draft.rawValue, for: .normal)
+        statusButton.setTitle(entry?.status.rawValue ?? "[Set Status]", for: .normal)
         valueTextField.text = entry?.value
         descriptionTextView.text = entry?.description
     }
