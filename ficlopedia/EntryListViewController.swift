@@ -17,10 +17,10 @@ class EntryListViewController: UIViewController {
 
     var entries: [Entry] = [] {
         didSet {
-            let set = Set(entries.map { ($0.category ?? "[No Category]") + ": " + $0.status.rawValue })
+            let set = Set(entries.map { $0.category + ": " + $0.status.rawValue })
             categories = set
                 .sorted(by: { $0 < $1 })
-                .map { section in (section, entries.filter { ($0.category ?? "[No Category]") + ": " + $0.status.rawValue == section }) }
+                .map { section in (section, entries.filter { $0.category + ": " + $0.status.rawValue == section }) }
             tableview.reloadData()
             entries.isEmpty ? spinner.startAnimating() : spinner.stopAnimating()
         }
@@ -28,17 +28,17 @@ class EntryListViewController: UIViewController {
     
     private var filteredEntries: [Entry] = []  {
         didSet {
-            let set = Set(filteredEntries.map { ($0.category ?? "[No Category]") + ": " + $0.status.rawValue })
+            let set = Set(filteredEntries.map { $0.category + ": " + $0.status.rawValue })
             filteredCategories = set
                 .sorted(by: { $0 < $1 })
-                .map { section in (section, filteredEntries.filter { ($0.category ?? "[No Category]") + ": " + $0.status.rawValue == section }) }
+                .map { section in (section, filteredEntries.filter { $0.category + ": " + $0.status.rawValue == section }) }
             tableview.reloadData()
         }
     }
     
-    private var categories: [(category: String?, entries: [Entry])] = []
-    private var filteredCategories: [(category: String?, entries: [Entry])] = []
-    var tableData: [(category: String?, entries: [Entry])] {
+    private var categories: [(category: String, entries: [Entry])] = []
+    private var filteredCategories: [(category: String, entries: [Entry])] = []
+    var tableData: [(category: String, entries: [Entry])] {
         return searchController.isActive ? filteredCategories : categories
     }
 
@@ -148,7 +148,7 @@ extension EntryListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return tableData[section].category ?? "[No Category]"
+        return tableData[section].category
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

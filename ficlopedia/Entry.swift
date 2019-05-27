@@ -9,7 +9,7 @@ struct Entry: FirebaseCodable {
     let id: String?
     let value: String
     let description: String
-    let category: String?
+    let category: String
     let status: EntryStatus
 }
 
