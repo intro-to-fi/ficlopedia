@@ -11,6 +11,7 @@ class EntryListViewController: UIViewController {
     let db = Firestore.firestore()
     let spinner = UIActivityIndicatorView()
     let searchController = UISearchController(searchResultsController: nil)
+    let filterDebouncer = Debouncer()
 
     @IBOutlet weak var tableview: UITableView!
 
@@ -118,16 +119,18 @@ class EntryListViewController: UIViewController {
     }
     
     func filterResults(searchText: String?) {
-        guard let searchText = searchText,
-            !searchText.isEmpty else { self.filteredEntries = self.entries; return }
-        let searchEntries = searchText.split(separator: " ")
-        self.filteredEntries = self.entries.filter { entry in
-            return searchEntries.map { searchEntry in
-                entry.value.lowercased().contains(searchEntry.lowercased()) ||
-                    entry.description.lowercased().contains(searchEntry.lowercased())
-                
-                }
-                .reduce(true, { $0 && $1 })
+        filterDebouncer.debounce {
+            guard let searchText = searchText,
+                !searchText.isEmpty else { self.filteredEntries = self.entries; return }
+            let searchEntries = searchText.split(separator: " ")
+            self.filteredEntries = self.entries.filter { entry in
+                return searchEntries.map { searchEntry in
+                    entry.value.lowercased().contains(searchEntry.lowercased()) ||
+                        entry.description.lowercased().contains(searchEntry.lowercased())
+                    
+                    }
+                    .reduce(true, { $0 && $1 })
+            }
         }
     }
 }
@@ -139,6 +142,7 @@ extension EntryListViewController: UISearchResultsUpdating {
 }
 
 extension EntryListViewController: UITableViewDataSource {
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return tableData.count
     }
