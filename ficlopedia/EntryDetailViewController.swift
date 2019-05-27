@@ -47,7 +47,7 @@ class EntryDetailViewController: UIViewController {
         select(options: EntryStatus.statuses, forButton: statusButton)
     }
     @IBAction func didTapCategoryButton(_ sender: UIButton) {
-        select(options: ["FI", "Investing", "Real Estate", "General Finance"], forButton: categoryButton)
+        select(options: ["FI", "Investing", "Real Estate", "Debt", "Taxes", "Personal Finance", "Travel Rewards", "General Finance"].sorted(), forButton: categoryButton)
     }
     
     @objc
