@@ -126,10 +126,11 @@ class EntryListViewController: UIViewController {
             self.filteredEntries = self.entries.filter { entry in
                 return searchEntries.map { searchEntry in
                     entry.value.lowercased().contains(searchEntry.lowercased()) ||
-                        entry.description.lowercased().contains(searchEntry.lowercased())
-                    
-                    }
-                    .reduce(true, { $0 && $1 })
+                    entry.description.lowercased().contains(searchEntry.lowercased()) ||
+                    entry.category.lowercased().contains(searchEntry.lowercased()) ||
+                    entry.status.rawValue.lowercased().contains(searchEntry.lowercased())
+                }
+                .reduce(true, { $0 && $1 })
             }
         }
     }
