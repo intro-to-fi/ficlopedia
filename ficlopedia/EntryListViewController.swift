@@ -10,6 +10,7 @@ import UIKit
 class EntryListViewController: UIViewController {
     let db = Firestore.firestore()
     let spinner = UIActivityIndicatorView()
+    let searchController = UISearchController(searchResultsController: nil)
 
     @IBOutlet weak var tableview: UITableView!
 
@@ -24,8 +25,22 @@ class EntryListViewController: UIViewController {
         }
     }
     
-    private var categories: [(category: String?, entries: [Entry])] = []
+    private var filteredEntries: [Entry] = []  {
+        didSet {
+            let set = Set(filteredEntries.map { ($0.category ?? "[No Category]") + ": " + $0.status.rawValue })
+            filteredCategories = set
+                .sorted(by: { $0 < $1 })
+                .map { section in (section, filteredEntries.filter { ($0.category ?? "[No Category]") + ": " + $0.status.rawValue == section }) }
+            tableview.reloadData()
+        }
+    }
     
+    private var categories: [(category: String?, entries: [Entry])] = []
+    private var filteredCategories: [(category: String?, entries: [Entry])] = []
+    var tableData: [(category: String?, entries: [Entry])] {
+        return searchController.isActive ? filteredCategories : categories
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -89,30 +104,56 @@ class EntryListViewController: UIViewController {
         spinner.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         spinner.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         spinner.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
+        
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
+
 
         let refreshControl = UIRefreshControl()
         tableview.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         tableview.tableFooterView = UIView()
     }
+    
+    func filterResults(searchText: String?) {
+        guard let searchText = searchText,
+            !searchText.isEmpty else { self.filteredEntries = self.entries; return }
+        let searchEntries = searchText.split(separator: " ")
+        self.filteredEntries = self.entries.filter { entry in
+            return searchEntries.map { searchEntry in
+                entry.value.lowercased().contains(searchEntry.lowercased()) ||
+                    entry.description.lowercased().contains(searchEntry.lowercased())
+                
+                }
+                .reduce(true, { $0 && $1 })
+        }
+    }
+}
+
+extension EntryListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterResults(searchText: searchController.searchBar.text)
+    }
 }
 
 extension EntryListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return categories.count
+        return tableData.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return categories[section].category ?? "[No Category]"
+        return tableData[section].category ?? "[No Category]"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories[section].entries.count
+        return tableData[section].entries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "entryListViewCell", for: indexPath)
-        let entry = categories[indexPath.section].entries[indexPath.row]
+        let entry = tableData[indexPath.section].entries[indexPath.row]
         cell.textLabel?.text = entry.value
         cell.detailTextLabel?.text = entry.description
         return cell
@@ -121,6 +162,7 @@ extension EntryListViewController: UITableViewDataSource {
 
 extension EntryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigateToEntryView(with: categories[indexPath.section].entries[indexPath.row])
+        let entry = tableData[indexPath.section].entries[indexPath.row]
+        navigateToEntryView(with: entry)
     }
 }
