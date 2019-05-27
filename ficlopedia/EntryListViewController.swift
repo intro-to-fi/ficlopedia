@@ -109,6 +109,8 @@ class EntryListViewController: UIViewController {
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         searchController.searchResultsUpdater = self
+        searchController.searchBar.scopeButtonTitles = ["All"] + EntryStatus.statuses
+        searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
 
 
@@ -118,9 +120,9 @@ class EntryListViewController: UIViewController {
         tableview.tableFooterView = UIView()
     }
     
-    func filterResults(searchText: String?) {
+    func filterResults(_ searchBar: UISearchBar?) {
         filterDebouncer.debounce {
-            guard let searchText = searchText,
+            guard let searchText = searchBar?.text,
                 !searchText.isEmpty else { self.filteredEntries = self.entries; return }
             let searchEntries = searchText.split(separator: " ")
             self.filteredEntries = self.entries.filter { entry in
@@ -132,13 +134,24 @@ class EntryListViewController: UIViewController {
                 }
                 .reduce(true, { $0 && $1 })
             }
+            if let scopeIndex = searchBar?.selectedScopeButtonIndex,
+                scopeIndex != 0,
+                let status = EntryStatus(rawValue: EntryStatus.statuses[scopeIndex - 1]) {
+                self.filteredEntries = self.filteredEntries.filter { $0.status == status }
+            }
         }
     }
 }
 
 extension EntryListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        filterResults(searchText: searchController.searchBar.text)
+        filterResults(searchController.searchBar)
+    }
+}
+
+extension EntryListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        filterResults(searchBar)
     }
 }
 
