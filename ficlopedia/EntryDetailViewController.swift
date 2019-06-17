@@ -52,7 +52,7 @@ class EntryDetailViewController: UIViewController {
     
     @objc
     func didTapSave() {
-        guard let entry = entry else { createNewEntry(); return }
+        guard let entry = entry, entry.id != nil else { createNewEntry(); return }
         save(entry)
     }
     

@@ -122,10 +122,17 @@ class EntryListViewController: UIViewController {
     
     func filterResults(_ searchBar: UISearchBar?) {
         filterDebouncer.debounce {
+            var filtered = self.entries
+            defer { self.filteredEntries = filtered}
+            if let scopeIndex = searchBar?.selectedScopeButtonIndex,
+                scopeIndex != 0,
+                let status = EntryStatus(rawValue: EntryStatus.statuses[scopeIndex - 1]) {
+                filtered = filtered.filter { $0.status == status }
+            }
             guard let searchText = searchBar?.text,
-                !searchText.isEmpty else { self.filteredEntries = self.entries; return }
+                !searchText.isEmpty else { return }
             let searchEntries = searchText.split(separator: " ")
-            self.filteredEntries = self.entries.filter { entry in
+            filtered = filtered.filter { entry in
                 return searchEntries.map { searchEntry in
                     entry.value.lowercased().contains(searchEntry.lowercased()) ||
                     entry.description.lowercased().contains(searchEntry.lowercased()) ||
@@ -134,11 +141,7 @@ class EntryListViewController: UIViewController {
                 }
                 .reduce(true, { $0 && $1 })
             }
-            if let scopeIndex = searchBar?.selectedScopeButtonIndex,
-                scopeIndex != 0,
-                let status = EntryStatus(rawValue: EntryStatus.statuses[scopeIndex - 1]) {
-                self.filteredEntries = self.filteredEntries.filter { $0.status == status }
-            }
+            filtered += [Entry(id: nil, value: searchText, description: "", category: "New", status: .draft)]
         }
     }
 }
