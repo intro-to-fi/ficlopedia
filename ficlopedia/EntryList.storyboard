@@ -136,7 +136,6 @@
                                                         <state key="normal" title="Button"/>
                                                         <connections>
                                                             <action selector="didTapCategoryButton:" destination="Sdo-7y-G8b" eventType="touchUpInside" id="O9b-tM-Z83"/>
-                                                            <action selector="didTapStatusButton:" destination="Sdo-7y-G8b" eventType="touchUpInside" id="c09-qa-kzf"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>

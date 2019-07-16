@@ -129,7 +129,7 @@ class EntryListViewController: UIViewController {
                 let status = EntryStatus(rawValue: EntryStatus.statuses[scopeIndex - 1]) {
                 filtered = filtered.filter { $0.status == status }
             }
-            guard let searchText = searchBar?.text,
+            guard let searchText = searchBar?.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines),
                 !searchText.isEmpty else { return }
             let searchEntries = searchText.split(separator: " ")
             filtered = filtered.filter { entry in
@@ -141,7 +141,10 @@ class EntryListViewController: UIViewController {
                 }
                 .reduce(true, { $0 && $1 })
             }
-            filtered += [Entry(id: nil, value: searchText, description: "", category: "New", status: .draft)]
+            if !filtered.contains(where: { $0.value.lowercased() == searchText.lowercased() }) {
+                let title = searchText.split(separator: " ").map { $0.prefix(1).uppercased() + $0.lowercased().dropFirst() }.joined(separator: " ")
+                filtered += [Entry(id: nil, value: title, description: "", category: "New", status: .draft)]
+            }
         }
     }
 }
