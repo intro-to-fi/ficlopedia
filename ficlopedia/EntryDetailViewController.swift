@@ -18,6 +18,7 @@ class EntryDetailViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     
     var saveButton: UIBarButtonItem!
+    var selectedCategory: Category?
     
     private let db = Firestore.firestore()
     
@@ -46,14 +47,26 @@ class EntryDetailViewController: UIViewController {
     @IBAction func didTapStatusButton(_ sender: UIButton) {
         select(options: EntryStatus.statuses, forButton: statusButton)
     }
+    
     @IBAction func didTapCategoryButton(_ sender: UIButton) {
-        select(options: ["FI", "Investing", "Real Estate", "Debt", "Taxes", "Personal Finance", "Travel Rewards", "General Finance", "General Knowledge"].sorted(), forButton: categoryButton)
+        selectCategory(options: Store.categories, forButton: categoryButton)
     }
     
     @objc
     func didTapSave() {
-        guard let entry = entry, entry.id != nil else { createNewEntry(); return }
-        save(entry)
+        do {
+            guard let entry = entry, case .saved = entry.id else { try createNewEntry(); return }
+            try save(entry)
+        } catch {
+            let alertController = UIAlertController(title: "Save Error", message: error.localizedDescription, preferredStyle: .alert)
+            let yesAction = UIAlertAction(title: "Try Again", style: .default) { _ in
+                self.didTapSave()
+            }
+            alertController.addAction(yesAction)
+            alertController.preferredAction = yesAction
+            alertController.addAction(.init(title: "Cancel", style: .default))
+            present(alertController, animated: true)
+        }
     }
     
     @IBAction func didtapTrash(_ sender: UIBarButtonItem) {
@@ -61,53 +74,68 @@ class EntryDetailViewController: UIViewController {
         delete(entry)
     }
     
-    private func select(options: [String], forButton button: UIButton) {
+    private func select(options: [EntryStatus], forButton button: UIButton) {
         var datasource: SimpleTableViewDataAndDelegate?
-        datasource = SimpleTableViewDataAndDelegate(strings: options, subStrings: nil) { indexPath in
-            self.dismiss(animated: true) {
-                button.setTitle(options[indexPath.row], for: .normal)
-                self.hasEdits = true
-                datasource = nil
-            }
+        datasource = SimpleTableViewDataAndDelegate(options: options) { option in
+            self.navigationController?.popViewController(animated: true)
+            button.setTitle(option.name, for: .normal)
+            self.hasEdits = true
+            datasource = nil
         }
         let tvc = UITableViewController()
         tvc.tableView.tableFooterView = UIView()
         tvc.tableView.dataSource = datasource
         tvc.tableView.delegate = datasource
         tvc.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        present(tvc, animated: true) {
-            tvc.tableView.reloadData()
-        }
+        navigationController?.pushViewController(tvc, animated: true)
+        tvc.tableView.reloadData()
     }
-    
+
+    private func selectCategory(options: [Category], forButton button: UIButton) {
+        var datasource: SimpleTableViewDataAndDelegate?
+        datasource = SimpleTableViewDataAndDelegate(options: options) { option in
+            self.navigationController?.popViewController(animated: true)
+            button.setTitle(option.name, for: .normal)
+            self.selectedCategory = option as? Category
+            self.hasEdits = true
+            datasource = nil
+        }
+        let tvc = UITableViewController()
+        tvc.tableView.tableFooterView = UIView()
+        tvc.tableView.dataSource = datasource
+        tvc.tableView.delegate = datasource
+        tvc.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        navigationController?.pushViewController(tvc, animated: true)
+        tvc.tableView.reloadData()
+    }
+
     class SimpleTableViewDataAndDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
-        let strings: [String]
-        let subStrings: [String]?
-        let onSelectRow: (IndexPath) -> ()
-        init(strings: [String], subStrings: [String]?, onSelectRow: @escaping (IndexPath) -> ()) {
-            self.strings = strings
-            self.subStrings = subStrings
+        let options: [Optionable]
+        let onSelectRow: (Optionable) -> ()
+        init(options: [Optionable], onSelectRow: @escaping (Optionable) -> ()) {
+            self.options = options.filter { $0.optionId != nil }
             self.onSelectRow = onSelectRow
         }
         
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return strings.count
+            return options.count
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = strings[indexPath.row]
+            cell.textLabel?.text = options[indexPath.row].name
+            cell.detailTextLabel?.text = options[indexPath.row].subName
             return cell
         }
         
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            onSelectRow(indexPath)
+            onSelectRow(options[indexPath.row])
         }
     }
     
-    private func save(_ entry: Entry) {
-        guard let id = entry.id, let entry = entryFromForm else { return }
-        db.document("entries/\(id)").updateData(entry.data) { error in
+    private func save(_ entry: Entry) throws {
+        guard case let .saved(id) = entry.id, let entry = entryFromForm, let json = try entry.json() else { return }
+        db.document("entries/\(id)").updateData(json) { error in
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -116,9 +144,9 @@ class EntryDetailViewController: UIViewController {
         }
     }
     
-    private func createNewEntry() {
-        guard let entry = entryFromForm else { return }
-        db.collection("entries").addDocument(data: entry.data) { error in
+    private func createNewEntry() throws {
+        guard let entry = entryFromForm, let json = try entry.json() else { return }
+        db.collection("entries").addDocument(data: json) { error in
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -133,11 +161,11 @@ class EntryDetailViewController: UIViewController {
             let statusText = statusButton.titleLabel?.text,
             let status = EntryStatus(rawValue: statusText),
             let category = categoryButton.titleLabel?.text else { return nil}
-        return Entry(id: entry?.id, value: value, description: description, category: category, status: status)
+        return Entry(id: entry?.id ?? .unsaved, value: value, description: description, category: category, status: status, categoryID: selectedCategory?.id)
     }
     
     private func delete(_ entry: Entry) {
-        guard let id = entry.id else { return }
+        guard case let .saved(id) = entry.id else { return }
         let alertController = UIAlertController(title: "Delete Entry", message: "Are you sure?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
             self.db.document("entries/\(id)").delete { error in
@@ -162,6 +190,7 @@ class EntryDetailViewController: UIViewController {
         categoryLabel.text = "Category"
         valueLabel.text = "Value"
         valueTextField.delegate = self
+        valueTextField.autocapitalizationType = .words
         descriptionLabel.text = "Description"
         descriptionTextView.delegate = self
         descriptionTextView.layer.borderWidth = 0.5
@@ -177,6 +206,7 @@ class EntryDetailViewController: UIViewController {
     }
     
     private func load(from entry: Entry?) {
+        title = entry?.value
         statusButton.setTitle(entry?.status.rawValue ?? "[Set Status]", for: .normal)
         categoryButton.setTitle(entry?.category ?? "[Set Category]", for: .normal)
         valueTextField.text = entry?.value

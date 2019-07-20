@@ -4,8 +4,53 @@
 //
 
 import FirebaseAuth
+import FirebaseDatabase
+import FirebaseCore
 import FirebaseFirestore
 import UIKit
+
+class Store {
+    static var categories: [Category] = [] {
+        didSet {
+            guard categories != oldValue else { return }
+            categoryListener?(categories)
+        }
+    }
+    static let db: Database = Database.database()
+    static let categoryRef: DatabaseReference = db.reference(withPath: "categories")
+
+    static var categoryListenerHandle: DatabaseHandle?
+    
+    static var categoryListener: (([Category]) -> Void)? = nil
+    static func onCategoryChanges(closure: @escaping (([Category]) -> Void)) {
+        categoryListener = closure
+    }
+
+    static let encoder: JSONEncoder = .init()
+    static let decoder: JSONDecoder = .init()
+    
+    static func listenForCategoryChanges() {
+        guard categoryListenerHandle == nil else { return }
+        categoryListenerHandle = categoryRef.observe(.value, with: { snapshot in
+            categories = (snapshot.children.allObjects as? [DataSnapshot])?.compactMap(Category.init) ?? []
+        }) { error in
+            guard let handle = categoryListenerHandle else { return }
+            categoryRef.removeObserver(withHandle: handle)
+        }
+    }
+
+    static func fetchCategories(completion: (() -> Void)? = nil) {
+        guard categoryListenerHandle == nil else { return }
+        categoryRef.observeSingleEvent(of: .value) { snapshot in
+            categories = snapshot.multiDecode()
+            completion?()
+        }
+    }
+
+    static func add(_ category: Category) throws {
+        categoryRef.childByAutoId().setValue(try category.json())
+    }
+}
 
 class EntryListViewController: UIViewController {
     let db = Firestore.firestore()
@@ -52,9 +97,6 @@ class EntryListViewController: UIViewController {
         refreshData()
     }
     
-    @IBAction func didTapSignout(_ sender: UIBarButtonItem) {
-        transitionToLoggedOut()
-    }
     @IBAction func didTapAdd(_ sender: UIBarButtonItem) {
         navigateToEntryView(with: nil)
     }
@@ -69,22 +111,6 @@ class EntryListViewController: UIViewController {
         }
     }
     
-    private func transitionToLoggedOut() {
-        if let window = UIApplication.shared.keyWindow {
-            do {
-                try Auth.auth().signOut()
-                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-                UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromLeft, animations: {
-                    window.rootViewController = vc
-                }, completion: { completed in
-                    // maybe do something here
-                })
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
     private func navigateToEntryView(with entry: Entry?) {
         guard let vc = UIStoryboard(name: "EntryList", bundle: nil)
             .instantiateViewController(withIdentifier: "entryDetailViewController") as? EntryDetailViewController else { return }
@@ -95,6 +121,7 @@ class EntryListViewController: UIViewController {
     }
     
     private func setupView() {
+        title = "Entry List"
         spinner.hidesWhenStopped = true
         spinner.startAnimating()
         view.addSubview(spinner)
@@ -109,8 +136,11 @@ class EntryListViewController: UIViewController {
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         searchController.searchResultsUpdater = self
-        searchController.searchBar.scopeButtonTitles = ["All"] + EntryStatus.statuses
+        searchController.searchBar.scopeButtonTitles = ["All"] + EntryStatus.statuses.map { $0.name }
         searchController.searchBar.delegate = self
+        searchController.searchBar.autocapitalizationType = .words
+        searchController.searchBar.spellCheckingType = .yes
+        searchController.searchBar.autocorrectionType = .yes
         navigationItem.searchController = searchController
 
 
@@ -126,7 +156,7 @@ class EntryListViewController: UIViewController {
             defer { self.filteredEntries = filtered}
             if let scopeIndex = searchBar?.selectedScopeButtonIndex,
                 scopeIndex != 0,
-                let status = EntryStatus(rawValue: EntryStatus.statuses[scopeIndex - 1]) {
+                let status = EntryStatus(rawValue: EntryStatus.statuses[scopeIndex - 1].name) {
                 filtered = filtered.filter { $0.status == status }
             }
             guard let searchText = searchBar?.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines),
@@ -143,7 +173,7 @@ class EntryListViewController: UIViewController {
             }
             if !filtered.contains(where: { $0.value.lowercased() == searchText.lowercased() }) {
                 let title = searchText.split(separator: " ").map { $0.prefix(1).uppercased() + $0.lowercased().dropFirst() }.joined(separator: " ")
-                filtered += [Entry(id: nil, value: title, description: "", category: "New", status: .draft)]
+                filtered += [Entry(id: .unsaved, value: title, description: "", category: "New", status: .draft, categoryID: nil)]
             }
         }
     }

@@ -3,12 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		18CADE3074D1E8D996EC965C /* Pods_ficlopedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6726B195E95B3DD5B7D4E2BC /* Pods_ficlopedia.framework */; };
 		33006F87229C634700AE9235 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33006F86229C634700AE9235 /* Debouncer.swift */; };
+		33159B4222E32CEF001C8D60 /* DataSnapshot+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33159B4122E32CEF001C8D60 /* DataSnapshot+Extensions.swift */; };
+		33159B4422E3383C001C8D60 /* ObjectListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33159B4322E3383C001C8D60 /* ObjectListTableViewController.swift */; };
 		333493AA229145530059CD66 /* DocumentSnapshot+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333493A9229145530059CD66 /* DocumentSnapshot+Extensions.swift */; };
 		336573822291284400166ECB /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336573812291284400166ECB /* Entry.swift */; };
 		3365738422912DC200166ECB /* EntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3365738322912DC200166ECB /* EntryDetailViewController.swift */; };
@@ -48,6 +50,8 @@
 		2EA38283F0B8B5E67780590E /* Pods-ficlopediaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ficlopediaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ficlopediaUITests/Pods-ficlopediaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3129E85FF8FF8810426264BE /* Pods_ficlopediaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ficlopediaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33006F86229C634700AE9235 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
+		33159B4122E32CEF001C8D60 /* DataSnapshot+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSnapshot+Extensions.swift"; sourceTree = "<group>"; };
+		33159B4322E3383C001C8D60 /* ObjectListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectListTableViewController.swift; sourceTree = "<group>"; };
 		333493A9229145530059CD66 /* DocumentSnapshot+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentSnapshot+Extensions.swift"; sourceTree = "<group>"; };
 		336573812291284400166ECB /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		3365738322912DC200166ECB /* EntryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +109,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		33159B4622E338E6001C8D60 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				333493A9229145530059CD66 /* DocumentSnapshot+Extensions.swift */,
+				33159B4122E32CEF001C8D60 /* DataSnapshot+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		33159B4722E338F5001C8D60 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				33006F86229C634700AE9235 /* Debouncer.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		33159B4822E33905001C8D60 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				336573812291284400166ECB /* Entry.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		33159B4A22E33A54001C8D60 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3391D9DB228E651900CEBC99 /* Assets.xcassets */,
+				3391D9DD228E651900CEBC99 /* LaunchScreen.storyboard */,
+				3391D9E0228E651A00CEBC99 /* Info.plist */,
+				3391D9D8228E651900CEBC99 /* ficlopedia.xcdatamodeld */,
+				33F21F7E228E6892007F027A /* GoogleService-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		3391D9C5228E651900CEBC99 = {
 			isa = PBXGroup;
 			children = (
@@ -133,18 +174,15 @@
 			children = (
 				3391D9D1228E651900CEBC99 /* AppDelegate.swift */,
 				3391D9D3228E651900CEBC99 /* ViewController.swift */,
+				33159B4322E3383C001C8D60 /* ObjectListTableViewController.swift */,
 				33F21F80228E7121007F027A /* EntryListViewController.swift */,
-				33006F86229C634700AE9235 /* Debouncer.swift */,
 				3365738322912DC200166ECB /* EntryDetailViewController.swift */,
-				336573812291284400166ECB /* Entry.swift */,
-				333493A9229145530059CD66 /* DocumentSnapshot+Extensions.swift */,
 				3391D9D5228E651900CEBC99 /* Main.storyboard */,
 				33F21F82228E713C007F027A /* EntryList.storyboard */,
-				3391D9DB228E651900CEBC99 /* Assets.xcassets */,
-				3391D9DD228E651900CEBC99 /* LaunchScreen.storyboard */,
-				3391D9E0228E651A00CEBC99 /* Info.plist */,
-				3391D9D8228E651900CEBC99 /* ficlopedia.xcdatamodeld */,
-				33F21F7E228E6892007F027A /* GoogleService-Info.plist */,
+				33159B4722E338F5001C8D60 /* Utilities */,
+				33159B4822E33905001C8D60 /* Models */,
+				33159B4622E338E6001C8D60 /* Extensions */,
+				33159B4A22E33A54001C8D60 /* Resources */,
 			);
 			path = ficlopedia;
 			sourceTree = "<group>";
@@ -365,23 +403,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ficlopedia/Pods-ficlopedia-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates-Firestore.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ficlopedia/Pods-ficlopedia-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Firestore.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseGoogleAuthUI.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ficlopedia/Pods-ficlopedia-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ficlopedia/Pods-ficlopedia-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ficlopedia/Pods-ficlopedia-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E4C132FF40F2B3EF142FE809 /* [CP] Embed Pods Frameworks */ = {
@@ -389,33 +420,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ficlopedia/Pods-ficlopedia-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ficlopedia/Pods-ficlopedia-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ficlopedia/Pods-ficlopedia-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ficlopedia/Pods-ficlopedia-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ficlopedia/Pods-ficlopedia-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F03A26ED5AB2B09AA28368C7 /* [CP] Check Pods Manifest.lock */ = {
@@ -443,9 +457,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33159B4422E3383C001C8D60 /* ObjectListTableViewController.swift in Sources */,
 				336573822291284400166ECB /* Entry.swift in Sources */,
 				33006F87229C634700AE9235 /* Debouncer.swift in Sources */,
 				3391D9D4228E651900CEBC99 /* ViewController.swift in Sources */,
+				33159B4222E32CEF001C8D60 /* DataSnapshot+Extensions.swift in Sources */,
 				333493AA229145530059CD66 /* DocumentSnapshot+Extensions.swift in Sources */,
 				33F21F81228E7121007F027A /* EntryListViewController.swift in Sources */,
 				3391D9DA228E651900CEBC99 /* ficlopedia.xcdatamodeld in Sources */,

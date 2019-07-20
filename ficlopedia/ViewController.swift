@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if let user = Auth.auth().currentUser {
+        if Auth.auth().currentUser != nil {
             transitionToLoggedIn()
         }
     }
@@ -30,6 +30,7 @@ class ViewController: UIViewController {
     
     private func transitionToLoggedIn() {
         if let window = UIApplication.shared.keyWindow {
+            Store.fetchCategories()
             let vc = UIStoryboard(name: "EntryList", bundle: nil).instantiateInitialViewController()
             UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromLeft, animations: {
                 window.rootViewController = vc
