@@ -72,9 +72,9 @@ struct Entry: FirebaseCodable, Identifiable {
     let id: ID<Entry>
     let value: String
     let description: String
-    let category: String
     let status: EntryStatus
-    let categoryID: ID<Category>?
+    let categoryID: ID<Category>
+    let rtdKey: ID<Entry>
 }
 
 struct Category: FirebaseCodable, Identifiable {

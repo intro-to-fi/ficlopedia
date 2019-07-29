@@ -22,6 +22,7 @@
 		3391D9DF228E651900CEBC99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3391D9DD228E651900CEBC99 /* LaunchScreen.storyboard */; };
 		3391D9EA228E651A00CEBC99 /* ficlopediaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391D9E9228E651A00CEBC99 /* ficlopediaTests.swift */; };
 		3391D9F5228E651A00CEBC99 /* ficlopediaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391D9F4228E651A00CEBC99 /* ficlopediaUITests.swift */; };
+		33CA88C322EE474400A92678 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CA88C222EE474400A92678 /* Store.swift */; };
 		33F21F7F228E6892007F027A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33F21F7E228E6892007F027A /* GoogleService-Info.plist */; };
 		33F21F81228E7121007F027A /* EntryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F21F80228E7121007F027A /* EntryListViewController.swift */; };
 		33F21F83228E713C007F027A /* EntryList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33F21F82228E713C007F027A /* EntryList.storyboard */; };
@@ -69,6 +70,7 @@
 		3391D9F0228E651A00CEBC99 /* ficlopediaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ficlopediaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3391D9F4228E651A00CEBC99 /* ficlopediaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ficlopediaUITests.swift; sourceTree = "<group>"; };
 		3391D9F6228E651A00CEBC99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33CA88C222EE474400A92678 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		33F21F7E228E6892007F027A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		33F21F80228E7121007F027A /* EntryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryListViewController.swift; sourceTree = "<group>"; };
 		33F21F82228E713C007F027A /* EntryList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EntryList.storyboard; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				3391D9D3228E651900CEBC99 /* ViewController.swift */,
 				33159B4322E3383C001C8D60 /* ObjectListTableViewController.swift */,
 				33F21F80228E7121007F027A /* EntryListViewController.swift */,
+				33CA88C222EE474400A92678 /* Store.swift */,
 				3365738322912DC200166ECB /* EntryDetailViewController.swift */,
 				3391D9D5228E651900CEBC99 /* Main.storyboard */,
 				33F21F82228E713C007F027A /* EntryList.storyboard */,
@@ -463,6 +466,7 @@
 				3391D9D4228E651900CEBC99 /* ViewController.swift in Sources */,
 				33159B4222E32CEF001C8D60 /* DataSnapshot+Extensions.swift in Sources */,
 				333493AA229145530059CD66 /* DocumentSnapshot+Extensions.swift in Sources */,
+				33CA88C322EE474400A92678 /* Store.swift in Sources */,
 				33F21F81228E7121007F027A /* EntryListViewController.swift in Sources */,
 				3391D9DA228E651900CEBC99 /* ficlopedia.xcdatamodeld in Sources */,
 				3365738422912DC200166ECB /* EntryDetailViewController.swift in Sources */,

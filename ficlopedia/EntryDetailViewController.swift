@@ -3,6 +3,7 @@
 // Copyright © 2019 Intro To FI. All rights reserved.
 //
 
+import FirebaseDatabase
 import FirebaseFirestore
 import UIKit
 
@@ -134,7 +135,8 @@ class EntryDetailViewController: UIViewController {
     }
     
     private func save(_ entry: Entry) throws {
-        guard case let .saved(id) = entry.id, let entry = entryFromForm, let json = try entry.json() else { return }
+        guard case let .saved(id) = entry.id, case let .saved(rtdKey) = entry.rtdKey, let entry = entryFromForm, let json = try entry.json() else { return }
+        Database.database().reference(withPath: "entries/\(rtdKey)").updateChildValues(json)
         db.document("entries/\(id)").updateData(json) { error in
             if let error = error {
                 print(error.localizedDescription)
@@ -145,7 +147,10 @@ class EntryDetailViewController: UIViewController {
     }
     
     private func createNewEntry() throws {
-        guard let entry = entryFromForm, let json = try entry.json() else { return }
+        guard let entry = entryFromForm, var json = try entry.json() else { return }
+        let ref = Database.database().reference(withPath: "entries").childByAutoId()
+        ref.setValue(json)
+        json["rtdKey"] = ref.key
         db.collection("entries").addDocument(data: json) { error in
             if let error = error {
                 print(error.localizedDescription)
@@ -160,14 +165,15 @@ class EntryDetailViewController: UIViewController {
             let description = descriptionTextView.text,
             let statusText = statusButton.titleLabel?.text,
             let status = EntryStatus(rawValue: statusText),
-            let category = categoryButton.titleLabel?.text else { return nil}
-        return Entry(id: entry?.id ?? .unsaved, value: value, description: description, category: category, status: status, categoryID: selectedCategory?.id)
+            let category = selectedCategory?.id else { return nil}
+        return Entry(id: entry?.id ?? .unsaved, value: value, description: description, status: status, categoryID: category, rtdKey: entry?.rtdKey ?? .unsaved)
     }
     
     private func delete(_ entry: Entry) {
         guard case let .saved(id) = entry.id else { return }
         let alertController = UIAlertController(title: "Delete Entry", message: "Are you sure?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
+            Database.database().reference(withPath: "entries/\(id)").removeValue()
             self.db.document("entries/\(id)").delete { error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -208,7 +214,8 @@ class EntryDetailViewController: UIViewController {
     private func load(from entry: Entry?) {
         title = entry?.value
         statusButton.setTitle(entry?.status.rawValue ?? "[Set Status]", for: .normal)
-        categoryButton.setTitle(entry?.category ?? "[Set Category]", for: .normal)
+        selectedCategory = Store.categories.first { entry?.categoryID == $0.id }
+        categoryButton.setTitle(selectedCategory?.name ?? "[Set Category]", for: .normal)
         valueTextField.text = entry?.value
         descriptionTextView.text = entry?.description
     }

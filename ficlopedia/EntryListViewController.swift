@@ -9,49 +9,6 @@ import FirebaseCore
 import FirebaseFirestore
 import UIKit
 
-class Store {
-    static var categories: [Category] = [] {
-        didSet {
-            guard categories != oldValue else { return }
-            categoryListener?(categories)
-        }
-    }
-    static let db: Database = Database.database()
-    static let categoryRef: DatabaseReference = db.reference(withPath: "categories")
-
-    static var categoryListenerHandle: DatabaseHandle?
-    
-    static var categoryListener: (([Category]) -> Void)? = nil
-    static func onCategoryChanges(closure: @escaping (([Category]) -> Void)) {
-        categoryListener = closure
-    }
-
-    static let encoder: JSONEncoder = .init()
-    static let decoder: JSONDecoder = .init()
-    
-    static func listenForCategoryChanges() {
-        guard categoryListenerHandle == nil else { return }
-        categoryListenerHandle = categoryRef.observe(.value, with: { snapshot in
-            categories = (snapshot.children.allObjects as? [DataSnapshot])?.compactMap(Category.init) ?? []
-        }) { error in
-            guard let handle = categoryListenerHandle else { return }
-            categoryRef.removeObserver(withHandle: handle)
-        }
-    }
-
-    static func fetchCategories(completion: (() -> Void)? = nil) {
-        guard categoryListenerHandle == nil else { return }
-        categoryRef.observeSingleEvent(of: .value) { snapshot in
-            categories = snapshot.multiDecode()
-            completion?()
-        }
-    }
-
-    static func add(_ category: Category) throws {
-        categoryRef.childByAutoId().setValue(try category.json())
-    }
-}
-
 class EntryListViewController: UIViewController {
     let db = Firestore.firestore()
     let spinner = UIActivityIndicatorView()
@@ -62,21 +19,42 @@ class EntryListViewController: UIViewController {
 
     var entries: [Entry] = [] {
         didSet {
-            let set = Set(entries.map { $0.category + ": " + $0.status.rawValue })
+            let set = Set(entries.map { categoryFor(id: $0.categoryID) + ": " + $0.status.rawValue })
             categories = set
                 .sorted(by: { $0 < $1 })
-                .map { section in (section, entries.filter { $0.category + ": " + $0.status.rawValue == section }) }
+                .map { section in (section, entries.filter { categoryFor(id: $0.categoryID) + ": " + $0.status.rawValue == section }) }
             tableview.reloadData()
             entries.isEmpty ? spinner.startAnimating() : spinner.stopAnimating()
+
+//            entries.forEach { entry in
+//                guard entry.value == "Triple Value of Income" else { return }
+//                guard case let .saved(id) = entry.id, let json = try? entry.json() else { return }
+//                print(entry.value, entry.category)
+//                let ref = Database.database().reference(withPath: "entries").childByAutoId()
+//                ref.setValue(json)
+//                let key = ref.key!
+//                Firestore.firestore().collection("entries").document(id).updateData(["rtdKey": key])
+//                Firestore.firestore().collection("entries").document(id).updateData(["categoryID": categoryID])
+//            }
         }
     }
-    
+
+    func categoryFor(string: String) -> Category? {
+        let categories = Store.categories
+        return categories.first { $0.name == string }
+    }
+
+    func categoryFor(id: ID<Category>) -> String {
+        let categories = Store.categories
+        return categories.first { $0.id == id }?.name ?? "[Unknown Category]"
+    }
+
     private var filteredEntries: [Entry] = []  {
         didSet {
-            let set = Set(filteredEntries.map { $0.category + ": " + $0.status.rawValue })
+            let set = Set(filteredEntries.map { categoryFor(id: $0.categoryID) + ": " + $0.status.rawValue })
             filteredCategories = set
                 .sorted(by: { $0 < $1 })
-                .map { section in (section, filteredEntries.filter { $0.category + ": " + $0.status.rawValue == section }) }
+                .map { section in (section, filteredEntries.filter { categoryFor(id: $0.categoryID) + ": " + $0.status.rawValue == section }) }
             tableview.reloadData()
         }
     }
@@ -90,6 +68,7 @@ class EntryListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        Store.fetchCategories()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -166,14 +145,14 @@ class EntryListViewController: UIViewController {
                 return searchEntries.map { searchEntry in
                     entry.value.lowercased().contains(searchEntry.lowercased()) ||
                     entry.description.lowercased().contains(searchEntry.lowercased()) ||
-                    entry.category.lowercased().contains(searchEntry.lowercased()) ||
+                    self.categoryFor(id: entry.categoryID).lowercased().contains(searchEntry.lowercased()) ||
                     entry.status.rawValue.lowercased().contains(searchEntry.lowercased())
                 }
                 .reduce(true, { $0 && $1 })
             }
             if !filtered.contains(where: { $0.value.lowercased() == searchText.lowercased() }) {
                 let title = searchText.split(separator: " ").map { $0.prefix(1).uppercased() + $0.lowercased().dropFirst() }.joined(separator: " ")
-                filtered += [Entry(id: .unsaved, value: title, description: "", category: "New", status: .draft, categoryID: nil)]
+                filtered += [Entry(id: .unsaved, value: title, description: "", status: .draft, categoryID: .unsaved, rtdKey: .unsaved)]
             }
         }
     }
