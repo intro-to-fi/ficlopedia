@@ -170,10 +170,11 @@ class EntryDetailViewController: UIViewController {
     }
     
     private func delete(_ entry: Entry) {
-        guard case let .saved(id) = entry.id else { return }
+        guard case let .saved(id) = entry.id,
+            case let .saved(refKey) = entry.rtdKey else { return }
         let alertController = UIAlertController(title: "Delete Entry", message: "Are you sure?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
-            Database.database().reference(withPath: "entries/\(id)").removeValue()
+            Database.database().reference(withPath: "entries/\(refKey)").removeValue()
             self.db.document("entries/\(id)").delete { error in
                 if let error = error {
                     print(error.localizedDescription)
