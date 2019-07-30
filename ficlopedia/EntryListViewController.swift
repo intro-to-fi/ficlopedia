@@ -152,7 +152,7 @@ class EntryListViewController: UIViewController {
             }
             if !filtered.contains(where: { $0.value.lowercased() == searchText.lowercased() }) {
                 let title = searchText.split(separator: " ").map { $0.prefix(1).uppercased() + $0.lowercased().dropFirst() }.joined(separator: " ")
-                filtered += [Entry(id: .unsaved, value: title, description: "", status: .draft, categoryID: .unsaved, rtdKey: .unsaved)]
+                filtered += [Entry(id: .unsaved, value: title, description: "", status: .draft, categoryID: Store.categories.first { $0.name == "New" }?.id ?? .unsaved, rtdKey: .unsaved)]
             }
         }
     }
